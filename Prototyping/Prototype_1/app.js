@@ -1,12 +1,29 @@
-var toggler = document.getElementsByClassName("box");
-var i;
+// /* function to display child elements on click */
+// var toggler = document.getElementsByClassName("container");
+// var i;
 
-for (i = 0; i < toggler.length; i++) {
-  toggler[i].addEventListener("click", function() {
-    this.parentElement.querySelector(".nested").classList.toggle("active");
-    // this.classList.toggle("check-box");
-  });
-}
+// for (i = 0; i < toggler.length; i++) {
+//   toggler[i].addEventListener("click", function() {
+//     this.parentElement.querySelector(".nested").classList.toggle("active"); /* Toggle from nested to active */
+//     // this.classList.toggle("check-box");
+//   });
+// }
+
+/* function to display child elements on click */
+$('input:checkbox').click(function () {    
+    // $('.nested').show();
+    if (this.parentElement.classList.contains("container")){
+        this.parentElement.querySelector(".nested").classList.toggle("active"); /* Toggle from nested to active */
+    }
+    // console.log(this.parentElement.querySelector(".nested").classList.value);
+    // if (this.classList.contains(".nested")){
+    //     console.log("YES");
+    // }    
+    // console.log(this.parentElement);
+    // if this.parentElement.classList
+    // this.parentElement.querySelector(".nested").classList.toggle("active"); /* Toggle from nested to active */
+
+});
 
 
 let Conditions = {

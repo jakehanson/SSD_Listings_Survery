@@ -12,6 +12,20 @@
   user-select: none;
 }
 
+/* Repeat but with a different class name */
+.hidden_container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 /* Hide the browser's default checkbox */
 .container input {
   position: absolute;
@@ -64,4 +78,17 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+/* Style for the unordered lists */
+ul{
+  list-style-type: none;  /* Get rid of bullets */
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
 }
