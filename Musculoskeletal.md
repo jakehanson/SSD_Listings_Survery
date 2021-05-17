@@ -1,0 +1,79 @@
+## Musculoskeletal
+
+- [ ] Do you have major dysfunction of a joint due to any cause? (1.02)
+  - [ ] Is the joint in your upper or lower body?
+    - [ ] Upper
+    - [ ] Lower
+  - [ ] Do any of the following apply?
+    - [ ] Joint dislocation
+    - [ ] Joint Deformity
+    - [ ] Extreme stiffness of the joint
+    - [ ] Chronic joint pain
+    - [ ] Limited range of motion
+    - [ ] Difficulty walking when completing everyday tasks
+    - [ ] Required use of a cane or walker
+    - [ ] Difficulty performing fine motor tasks such as brushing your teeth
+  - [ ] Have you had medical images taken of this joint?
+- [ ] Have you had major surgery on a weight bearing joint? (1.03)
+  - [ ] Do any of the following apply?
+    - [ ] Difficulty walking when completing everyday tasks
+    - [ ] Required use of a cane or walker
+    - [ ] Difficulty performing fine motor tasks such as brushing your teeth
+- [ ] Do you have any disorders of the spine that lead to severe pain and/or limited mobility? (1.04)
+  - [ ] Do any of the following conditions apply to you?
+    - [ ] Herniated disk
+    - [ ] Spinal arachnoiditis
+    - [ ] Spinal stenosis
+    - [ ] Steoarthritis
+    - [ ] Degenerative disc disease
+    - [ ] Facet arthritis
+    - [ ] Vertebral fracture
+    - [ ] Other/Unknown
+  - [ ] Have you had medical images taken of your spine?
+- [ ] Have you had an amputation of any kind? (1.05)
+  - [ ] Please select the type of amputation:
+  - [ ] Lower Body
+    - [ ] Leg
+    - [ ] Partial foot amputation
+    - [ ] Ankle disarticulation
+    - [ ] Below-knee amputation
+    - [ ]  Above-knee amputation
+    - [ ] Hip disarticulation
+    - [ ] Hemipelvectomy
+  - [ ] Upper Body
+    - [ ] Arm
+    - [ ] Finger(s)
+    - [ ] One hand
+    - [ ] Both hands
+    - [ ] Forearm amputation
+    - [ ] Elbow disarticulation
+    - [ ] Above-elbow amputation
+    - [ ] Shoulder disarticulation
+  - [ ] Did the amputation affect your ability to walk effectively?
+- [ ] Do you have problems that result from a broken bone in your lower body? (1.06)
+  - [ ] Please select which bone(s):
+    - [ ] Thigh
+    - [ ] Shin
+    - [ ] Hip
+    - [ ] Pelvis
+    - [ ] Foot
+    - [ ] Unknown/Other
+  - [ ] Do either of the following apply?
+    - [ ] Difficulty walking when completing everyday tasks
+    - [ ] Required use of a cane or walker
+  - [ ] Have you had medical images taken of the broken bone?
+- [ ] Do you have problems that result from a broken bone in your upper body? (1.07)
+  - [ ] Please select which bone(s):
+    - [ ] Arm (radius or ulna)
+    - [ ] Upper arm (humerus)
+    - [ ] Collarbone (clavicle)
+    - [ ] Other
+  - [ ] Did the bone heal properly?
+    - [ ] Yes
+    - [ ] No
+  - [ ] Do you have difficulty performing everyday tasks as a result of this injury?
+  - [ ] Have you had medical images taken of the broken bone?
+- [ ] Do you have a soft tissue injury (1.08)?
+  - [ ] Please describe the injury:
+  - [ ] Do you struggle to complete everyday tasks such as brushing your teethas a result of this injury?
+  - [ ] Do you have medical records regarding this injury?
