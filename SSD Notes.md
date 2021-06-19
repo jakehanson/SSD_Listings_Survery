@@ -1,18 +1,60 @@
 ## SSD Notes
 
-The file that is up to date is the prototyping prototype_1 stuff. There is an index, a style and an app.js.
+#### Forms and PHP
 
-Let's start by putting each of the 12 classes onto its own page. Preferrably with its own index.html file
+I am designing a form in HTML. I just realized that's what it's called. It looks like forms can have an *action* so that when you submit them something happens. How the input is processed is explained in the [PHP tutorial](https://www.w3schools.com/php/default.asp). I need this, since I will be processing input on the backend.
+
+- [ ] **To Do:**
+
+  - [ ] Forms and PHP
+
+  - [ ] Fix checkboxes
+
+  - [ ] Make sure all the pages follow the setup for pages 1,2 and 16 (with the div) and content. Click on the stuff below to see the HTML.
+
+    - [ ] <div class="container">
+        <div class="page-header">
+          <h1>Example Page Header</h1>      
+        </div>
+        <p>This is some text.</p>      
+        <p>This is another text.</p>      
+      </div>
+
+  - [ ] Fix problems with hovering and the container (everything is highlighted)
+
+    - [ ] This must have been because it was a <label> instead of <div> or <span>
+
+  - [ ] Split follow-up questions into a "follow-up page"
+
+  - [ ] Github Pages
 
 **Overview:** I don't like the look of dropdown check boxes. I think that we should split those out into a "Follow Up Questions" page. It may be something like for all the checkboxes that are checked display the hidden classes. There are also problems with hovering. I also think I like the spacing of asking the question followed by checkboxes.
 
-**To Do:**
+#### Div vs Span vs Label
 
-- [ ] Problems with conflicting classes
-- [ ] Fix problems with hovering and the container (everything is highlighted)
+They all put things in containers. I guess label makes it so if you click anywhere in the container the variable is active. 
 
-- [ ] Split follow-up questions into a "follow-up page"
-- [ ] Github Pages
+>```
+>The label element does not render as anything special for the user. However, it provides a usability improvement for mouse users, because if the user clicks on the text within the label element, it toggles the control.
+>```
+
+Put differently, the `<label>` tag inside a form is linked with its associated `<input>`. 
+
+The `<div>` tag defines a division or a section in an HTML document.
+
+The `<div>` tag is used as a container for HTML elements - which is then styled with CSS or manipulated with JavaScript.
+
+The `<div>` tag is easily styled by using the class or id attribute.
+
+#### Bootstrap
+
+Bootstrap is designed to be mobile first. There are two container classes: fixed width and full width. The full width will span the entire viewport.
+
+It looks like you put the class in a div element. Do I want to put the questions in a fixed width container or a fluid container?
+
+Bootstrap has headers (<h1>-<h6>), so I need to make sure those don't conflict either.
+
+If I'm committing to bootstrap, then I need to redo my checkboxes.
 
 #### Checkboxes
 
