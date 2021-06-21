@@ -1,34 +1,78 @@
 ## SSD Notes
 
-#### Forms and PHP
+I am most worried about setting up a server. My fear is that the clients won't connect to the server. I will connect to it locally but it will break for them. Where is this server? How do I protect it?
 
-I am designing a form in HTML. I just realized that's what it's called. It looks like forms can have an *action* so that when you submit them something happens. How the input is processed is explained in the [PHP tutorial](https://www.w3schools.com/php/default.asp). I need this, since I will be processing input on the backend.
+We are connecting forms to a database. Not rocket science.
+
+#### Connecting Forms to a Database
+
+Connecting forms to a database is a two step process. First, you create an entry form capable of passing information to a secondary file. Next, you create a hypertext Perprocessor PHP file to insert the form data into the database. The transactions needed to store information in the database require Sttructured Query Langauge SQL commands inside of the PHP script. 
+
+OK, so the PHP script allows us to connect and manipulate the database. I put the name of the server in a mysql_connect function, which PHP knows what to do with.
+
+The last step for today is to download PHP
+
+To start using PHP, I can either find a web host with PHP and MySQL support. OR install a web server on your own PC. So I basically need a server.
+
+I'm going to need to host my website somewhere. Github pages does not support PHP! It only supports static HTML which, by definition, does not support PHP.
+
+>Dynamic websites generate content live per each request. The request is delegated to a running web-application that builds the content.
+
+I need to host my website on a server. Straight up. I've always known this.
+
+It looks like I can run PHP stuff locally with XAMPP. If I do that, I will still need to host the website somewhere. Otherwise, the HTML code won't run on any computer that doesn't have XAMPP installed. That is the concern from before.
 
 - [ ] **To Do:**
 
-  - [ ] Forms and PHP
+  - [ ] How am I going to host my website? AWS? The server needs SQL and PHP.
+
+  - [ ] "Creating an SQL database from a form". SQL lets you create and manipulate a relational database.
 
   - [ ] Fix checkboxes
 
   - [ ] Make sure all the pages follow the setup for pages 1,2 and 16 (with the div) and content. Click on the stuff below to see the HTML.
-
-    - [ ] <div class="container">
+      
+        - [ ] <div class="container">
         <div class="page-header">
           <h1>Example Page Header</h1>      
         </div>
         <p>This is some text.</p>      
-        <p>This is another text.</p>      
-      </div>
+    <p>This is another text.</p>      
+    </div>
 
   - [ ] Fix problems with hovering and the container (everything is highlighted)
 
     - [ ] This must have been because it was a <label> instead of <div> or <span>
 
   - [ ] Split follow-up questions into a "follow-up page"
-
+  
   - [ ] Github Pages
+  
+  
 
-**Overview:** I don't like the look of dropdown check boxes. I think that we should split those out into a "Follow Up Questions" page. It may be something like for all the checkboxes that are checked display the hidden classes. There are also problems with hovering. I also think I like the spacing of asking the question followed by checkboxes.
+#### PHP and Databases
+
+PHP code is executed on the *server*. So I need to have a server.
+
+>PHP can be [used](https://www.php.net/manual/en/install.php) on all major operating systems, including Linux, many Unix variants (including HP-UX, Solaris and OpenBSD), Microsoft Windows, macOS, RISC OS, and probably others. PHP also has support for most of the web servers today. This includes Apache, IIS, and many others. And this includes any web server that can utilize the FastCGI PHP binary, like lighttpd and nginx. PHP works as either a module, or as a CGI processor.
+
+So I can choose my server. I also get to choose my database.
+
+>Writing a database-enabled web page is incredibly simple using one of the database specific extensions (e.g., for [mysql](https://www.php.net/manual/en/book.mysqli.php)), or using an abstraction layer like [PDO](https://www.php.net/manual/en/book.pdo.php), or connect to any database supporting the Open Database Connection standard via the [ODBC](https://www.php.net/manual/en/book.uodbc.php) extension. Other databases may utilize [cURL](https://www.php.net/manual/en/book.curl.php) or [sockets](https://www.php.net/manual/en/book.sockets.php), like CouchDB.
+
+Probably going to use mySQL.
+
+What will the records look like? Name, Age, Sex, Comments, *Boxes Checked*
+
+The boxes checked will be the crucial input from the form. We do something like, **for each box checked, print the relevant listing!** That will require a different database. We would have a *relational database*. The customer information is linked to their checked boxes. The checked boxes are in turn related to the listings satistfied.
+
+- [ ] "Creating an SQL database from a form". SQL lets you create and manipulate a relational database.
+
+There are different types of programming. Procedural (imperative), object-oriented, declarative, and functional. We are not interested in *how* we want the job done, but *what* we want to obtain. For procedural langauges, like C or Java, you do step one, then two, then three. In a declarative langauge, you just say what you want to achieve. I have sensed this from the beginning. That the output is the most important. All we want is the listings that are fully/partially satisfied. 
+
+#### Forms and PHP
+
+I am designing a form in HTML. I just realized that's what it's called. It looks like forms can have an *action* so that when you submit them something happens. How the input is processed is explained in the [PHP tutorial](https://www.w3schools.com/php/default.asp). I need this, since I will be processing input on the backend.
 
 #### Div vs Span vs Label
 
