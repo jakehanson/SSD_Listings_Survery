@@ -1,8 +1,74 @@
 ## SSD Notes
 
-I am most worried about setting up a server. My fear is that the clients won't connect to the server. I will connect to it locally but it will break for them. Where is this server? How do I protect it?
+Now we know how to create an SQL database using the myPhpAdmin through XAMPP. Now, I can put my SSD project into the htdocs folder of the XAMPP directory, and it will have access to any database in myPhpAdmin, assuming I connect the databases properly. This should allow me to get forms with PHP up and running.
 
-We are connecting forms to a database. Not rocket science.
+**To Do:**
+
+- [ ] Create my SQL database
+  - [ ] Name, Age, Email, Phone, *Listings Checked*
+  - [ ] I will also need a table that maps listing numbers to their descriptions. This could be an SQL table or maybe javascript or something.
+
+- [ ] "Creating an SQL database from a form". SQL lets you create and manipulate a relational database.
+
+- [ ] Fix checkboxes
+
+- [ ] Make sure all the pages follow the setup for pages 1,2 and 16 (with the div) and content. Click on the stuff below to see the HTML.
+
+  - [ ] <div class="container">
+
+  <div class="page-header">
+    <h1>Example Page Header</h1>      
+  </div>
+  <p>This is some text.</p>      
+  <p>This is another text.</p>      
+
+  </div>
+
+- [ ] Fix problems with hovering and the container (everything is highlighted)
+
+  - [ ] This must have been because it was a <label> instead of <div> or <span>
+
+- [ ] Split follow-up questions into a "follow-up page"
+
+- [ ] Web Hosting
+
+#### Running PHP Locally
+
+PHP is crucial for dynamic HTML sites. Usually, the servers run the PHP code, but you can set it up locally as well. All you need is a "local web server", such as XAMPP. After installing XAMPP, when you run localhost in the browser it takes you to the htdocs folder of XAMPP. Putting your project in there will allow you to navigate to it and run it in the browser like a real website.
+
+If I type in localhost in the browser it loads the `XAMPP/htdocs`. 
+
+Going to `localhost/phpmyadmin` loads the admin page.
+
+XAMPP control panel allows you to configure servers. You can manage databases easily through phpMyAdmin application.
+
+Works like a website on own computer. XAMPP allows you to explore a folder as if it was a website. The `localdisk/htdocs/` folder is what xampp has access to. Anything below that is off limits. So I will need to put my files into the htdocs folder.
+
+> Opening [index.html] from my local file system isn't really a real website.
+
+Need to open it with XAMPP! I see how this is going to work. Copy my project into htdocs and it'll all be good.
+
+#### Creating an SQL Database
+
+Make sure the servers are running in XAMPP. I can put the IP address (127.0.0.1) into a browser window and it will take me to the htdocs directory. For `localhost/phpMyAdmin`, the root username is: `root` with password `RootPass47!`.
+
+In phpMyAdmin, which can be accessed using `localhost/phpmyadmin`, you click on databases and create a new database. Note, I have already created a user named `studentdb` with password `studentpass1212`. All this user can do is select, insert, and update information (three priveleges). 
+
+Here is a good resource: https://www.youtube.com/watch?v=EK_AUTzV7OI.
+
+Then I create a table with 8 pieces of data. VARCHAR means string. I added 8 rows, and made the ID field the primary index. I also autoincrement the ID, so everyone should get a unique ID.
+
+Now, in the SQL tab of the phpMyAdmin page, I can insert information into the student database.
+
+```sql
+INSERT INTO student (f_name, l_name, street, city, state, email, phone) VALUES ('Jake', 'Hanson', '123 Main St.', 'Paradise Valley', 'AZ', 'xyz@email.com', '123-456-7899');
+```
+
+After I have the SQL database created on myPhPAdmin, I can connect to it through files locally. Here, myPhPAdmin is playing the role of the *server* where the database lives, and now I can create files (like html files) that connect to this database. The file I will create to connect to the database is called `mysqli_connect.php` and is located in the `htdocs` directory.
+
+I then put the user and password information into the connect file. I beleive the purpose of the new user was so you can work on projects as a new user without granting root access. It is probably just good practice to create a new user for each of the database projects you will be managing.
+
+Last, we make `testdb.php` to do some stuff with our SQL connection.
 
 #### Connecting Forms to a Database
 
@@ -10,45 +76,15 @@ Connecting forms to a database is a two step process. First, you create an entry
 
 OK, so the PHP script allows us to connect and manipulate the database. I put the name of the server in a mysql_connect function, which PHP knows what to do with.
 
-The last step for today is to download PHP
-
-To start using PHP, I can either find a web host with PHP and MySQL support. OR install a web server on your own PC. So I basically need a server.
+#### Web Hosting
 
 I'm going to need to host my website somewhere. Github pages does not support PHP! It only supports static HTML which, by definition, does not support PHP.
 
 >Dynamic websites generate content live per each request. The request is delegated to a running web-application that builds the content.
 
-I need to host my website on a server. Straight up. I've always known this.
+I need to host my website on a server. 
 
 It looks like I can run PHP stuff locally with XAMPP. If I do that, I will still need to host the website somewhere. Otherwise, the HTML code won't run on any computer that doesn't have XAMPP installed. That is the concern from before.
-
-- [ ] **To Do:**
-
-  - [ ] How am I going to host my website? AWS? The server needs SQL and PHP.
-
-  - [ ] "Creating an SQL database from a form". SQL lets you create and manipulate a relational database.
-
-  - [ ] Fix checkboxes
-
-  - [ ] Make sure all the pages follow the setup for pages 1,2 and 16 (with the div) and content. Click on the stuff below to see the HTML.
-      
-        - [ ] <div class="container">
-        <div class="page-header">
-          <h1>Example Page Header</h1>      
-        </div>
-        <p>This is some text.</p>      
-    <p>This is another text.</p>      
-    </div>
-
-  - [ ] Fix problems with hovering and the container (everything is highlighted)
-
-    - [ ] This must have been because it was a <label> instead of <div> or <span>
-
-  - [ ] Split follow-up questions into a "follow-up page"
-  
-  - [ ] Github Pages
-  
-  
 
 #### PHP and Databases
 
