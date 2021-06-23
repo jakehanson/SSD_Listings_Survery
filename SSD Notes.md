@@ -1,16 +1,14 @@
 ## SSD Notes
 
-Now we know how to create an SQL database using the myPhpAdmin through XAMPP. Now, I can put my SSD project into the htdocs folder of the XAMPP directory, and it will have access to any database in myPhpAdmin, assuming I connect the databases properly. This should allow me to get forms with PHP up and running.
+Let's try to change the attribute of a PHP class using an HTML checkbox. It looks like if I use a form in HTML, the action of the form can be to run/submit a PHP file. It also looks like variables in the php file can be modified using HTML checkboxes.
 
 **To Do:**
 
-- [ ] Create my SQL database
-  - [ ] Name, Age, Email, Phone, *Listings Checked*
-  - [ ] I will also need a table that maps listing numbers to their descriptions. This could be an SQL table or maybe javascript or something.
+- [ ] Split form across multiple HTML pages
 
-- [ ] "Creating an SQL database from a form". SQL lets you create and manipulate a relational database.
+- [x] Create my SQL database
 
-- [ ] Fix checkboxes
+- [x] "Creating an SQL database from a form". SQL lets you create and manipulate a relational database.
 
 - [ ] Make sure all the pages follow the setup for pages 1,2 and 16 (with the div) and content. Click on the stuff below to see the HTML.
 
@@ -24,13 +22,173 @@ Now we know how to create an SQL database using the myPhpAdmin through XAMPP. No
 
   </div>
 
-- [ ] Fix problems with hovering and the container (everything is highlighted)
-
-  - [ ] This must have been because it was a <label> instead of <div> or <span>
-
 - [ ] Split follow-up questions into a "follow-up page"
 
 - [ ] Web Hosting
+
+#### Creating a Client Database in PHP MyAdmin
+
+I will now create the database that I will use to store records for Sarah's clients. The user name will be `SSD_DB` with password `disability12!`. Next, I create a database called `clients`. It is a table with 5 columns: name, email, phone, disability, and ID. The ID is the primary key and should be autoassigned.
+
+>```sql
+>INSERT INTO client (name, email, phone, disability) VALUES ('Jake Hanson', 'jakehansn@email.com', '12344355', 'None');
+>```
+
+To connect to this database using HTML, I make a connect file called `mysqli_connect.php` with the following information:
+
+```php
+<?php
+DEFINE('DB_USER', 'SSD_DB');
+DEFINE('DB_PASSWORD', 'disability12!');
+DEFINE('DB_HOST', 'localhost');
+DEFINE('DB_NAME','Clients');
+$dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+OR die('Could not connect to MySQL: ' . 
+mysqli_connect_error());
+?>
+```
+
+Then, I can query this database in the html with a file called `testdb.php`, which contains the following:
+
+```php
+<?php
+require_once('mysqli_connect.php');
+$query = "SELECT name FROM client";
+$response = @mysqli_query($dbc, $query);
+if($response){
+	while($row = mysqli_fetch_array($response)){
+		echo $row['name'];
+	}
+}
+?>
+```
+
+The result is the name of all the people in the `Clients` database.
+
+#### Adding Clients to Database Using HTML Form
+
+Submitting a form to a PHP page means you can access the form variables using `$_POST['variable_name']$`.  This, in turn, means that you will be able to send these values to the SQL database in the PHP code. This is how checkboxes can be used to populate fields!
+
+The action of a form will be to run the `update_table.php` page. On submit, the form elements will be sent to the database. To use the form variables I set the method of the form to post, and I can call them with `''$_POST[var_name]'`. I will also connect to the database in the same file window, just for clarity.
+
+```php
+<?php
+$servername = "localhost";
+$username = "SSD_DB";
+$password = "disability12!";
+$dbname = "Clients";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// var_dump($_POST['name']); //Returns an array of all the check boxes that were clicked
+
+
+$sql = "INSERT INTO client (name, email, phone, disability)
+VALUES ('$_POST[name]', '$_POST[email]',  '$_POST[phone]', '')";
+
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+  echo "<br>";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+  echo "<br>";
+}
+
+// Print all the clients
+$query = "SELECT name FROM client";
+$response = @mysqli_query($conn, $query);
+if($response){
+	while($row = mysqli_fetch_array($response)){
+		echo $row['name'];
+		echo "<br>";
+	}
+}
+
+$conn->close();
+?>
+```
+
+#### \PHP Form Handling
+
+Note, to access the names of all the listings that are checked, I can use something like the following:
+
+```php
+<?php
+var_dump($_POST['level']); //Returns an array of all the check boxes that were clicked
+?>
+```
+
+#### Connecting to the Database
+
+Now we know how to create an SQL database using the myPhpAdmin through XAMPP. Now, I can put my SSD project into the htdocs folder of the XAMPP directory, and it will have access to any database in myPhpAdmin, assuming I connect the databases properly. This should allow me to get forms with PHP up and running.
+
+#### Forms in HTML
+
+I think I want to go back to creating records in a SQL database. If a box is checked, how do I send that to the SQL database? 
+
+If a box is checked, just change the is_hidden property of an HTML/CSS class on the last page. And send the input to the database.
+
+#### PHP Classes and Objects
+
+A class is a template for an object and an object is an instance of a class.
+
+I could perhaps make a class that stores the listing number as well as an attribute for whether it is satisfied. Would I really want to do this in PHP? 
+
+We could have a class called LISTING with the following description:
+
+```php
+<?php
+class Listing {
+  public $number;
+  public $description;
+  public $is_satisfied;
+  public function __construct($number, $description, $is_satisfied) {
+    $this->number = $number;
+    $this->description = $description;
+    $this->is_satisfied = $is_satisfied;
+
+  }
+  public function message() {
+    if ($this->is_satisfied) {
+          return "Listing " . $this->number . " " . $this->description; 
+    }
+  }
+}
+
+$listing001 = new Listing("001", "Schizophrenia", false);
+echo $listing001 -> message();
+echo "<br>";
+$listing002 = new Listing("002", "Autism", true);
+echo $listing002 -> message();
+?>
+```
+
+We will definitely want a class like this somewhere in the code, either in HTML or PHP.
+
+Will the `Listing` class also exist in the SQL database? The user is going to be filling out a form that determines  the value of the `is_satisfied` attribute of the class. For the sublisting class, we have just three attributes: listing, description, and is_satisfied. The main listing class has a partially satisfied attribute in addition to the is_satisfied attribute. In addition, the main listing class will have a *method* that looks to see if the relevant sublistings are satisfied. This means it needs an attribute with the relevant sublistings.
+
+- [ ] How do we map the user input to the relevant attribute?
+
+If we made our class in HTML, then we could create a function that runs with the name of the listing and changes that attribute
+
+```python
+def change_attribute(listing_number):
+  class_member(listing_number).attribute == True
+  
+if check:
+  change_attribute(checked_number)
+```
+
+So it's possible to imagine that the check box maps to an attribute of a class in HTML.
+
+#### Mapping a checkbox to a class attribute in HTML
+
+I can create classes in Javascript. They look very similar to classes in PHP. I can also have methods. The methods could contain the logic. What is the logic? A or B. A and B. A or C. 
 
 #### Running PHP Locally
 
@@ -187,6 +345,8 @@ This is a well-known problem; there is a good reference [here](https://www.youtu
 
 #### Nested Lists
 
+**Update: ** Turns out I don't really like nested checkboxes. I can use the earlier protoyping of something like Page 12 (mental disorders) to see how nested checkboxes work. Going forward, however, I would like to use a followup questions page instead.
+
 `$('input:checkbox')` will select all checkboxes on the page. I can use this to say if any checkbox is checked, then dispay the nested attributes. I'm leaning towards using the visible command, so how does that work?
 
 You can show and hide HTML elements using the jQuery `show()` and `hide()` methods. If the box is checked I can show or hide stuff. You can grab the element using jquery then hide or display it. But I will need the notion of a Parent element, since checking the parent element displays the child element. Nested elements are children of the parent elements.
@@ -267,10 +427,6 @@ You don't have to download javascript packages. You can just include them in you
   #("#page1form").on('submit',function(e) {console.log('form was submitted')}
   ```
 
-
-
-
-
 I could also do e.preventDefault(); # 
 
 ```html
@@ -308,15 +464,7 @@ let Conditions = {
 
 For a form like this we might want to go with templated type structure. There are weebly, wordpress, etc. They all have backend PHP that does lots of heavy lifting. You can also do a STATIC generator e.g. HUGO and JECKEL. HUGO takes markdown and converts them to HTML and formates them. It has templated language to create language - you can still EMBED javascript and EMBED HTML.
 
-#### Mapping between conditions and benefits.
-
-BenefitA: function () {
-
-returns 
-
-}
-
-
+#### Misc
 
 Submit button. Where does it go? When you click submit it goes somewhere. It does the ACTION. So your submit button will do action = "#". 
 
@@ -325,8 +473,6 @@ Give the form a name
 I can create HTML code from markdown using pandoc:
 
 `pandoc -o index.html index.md`
-
-
 
 #### Questions
 
@@ -339,11 +485,3 @@ How to go from local to website
 Would it be easy enough to style it with CSS. By the time I'm done with the form as I'm setting it up now I just need to set up dimensions and colors with. 
 
 Whats the difference between `let` vs `const` for variable types. There was also `var` but it had scoping problems so they made let and const. The former is modifiable and the latter is not. Prefer let and const over.
-
-#### To Do
-
-
-
-### Misc
-
-IMAGEN - Julia package for continuous time series. For permutation testing I can either permute the time series OR permute the source/target repetoires. JIDT has something.
