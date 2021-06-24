@@ -4,7 +4,15 @@ Let's try to change the attribute of a PHP class using an HTML checkbox. It look
 
 **To Do:**
 
-- [ ] Split form across multiple HTML pages
+- [ ] Split form across multiple HTML pages using session variables
+
+- [ ] Figure out how to store the checkboxes
+
+- [ ] Do the final page that submits the information
+
+- [ ] Update SQL Database with the correct entries
+
+- [x] I want to style my next and previous buttons better!
 
 - [x] Create my SQL database
 
@@ -22,9 +30,34 @@ Let's try to change the attribute of a PHP class using an HTML checkbox. It look
 
   </div>
 
-- [ ] Split follow-up questions into a "follow-up page"
+- [ ] Figure out followup page
 
 - [ ] Web Hosting
+
+#### Summary
+
+`index.html` has a form that executes `/update_table.php`. In `/update_table.php` I create a connection with the server, then I pass the results from the form to a SQL database on the server.
+
+
+
+#### Followup Questions Page
+
+I think the followup questions page will just be a huge HTML list with nested elements. I will just set the visibility of the elemnts based on the download of the checked boxes array from the database. I will also set some alerts based on logic if the listing is fully or partially satisfied.  
+
+#### Splitting an HTML form across multiple pages using session variables
+
+Session variables allow you to return information across multiple pages. A multi-page form in PHP can be created using sessions, that are used to retain values of a form and can transfer them from one page to another. Here is a [good reference](https://html.form.guide/php-form/php-order-form/).
+
+It sounds like *sessions* are variables that keep their values as the user navigates pages of a site. On the second page, we need to store the submitted data from the first page in the sesson. We store the variable as `$_SESSION['variable_name']`. The last page submits all the `$_SESSION` variables to the database. If it is from the previous page, you can use the `$_POST` array (e.g., `$_POST['name'])`. So session works just like post, but it lasts over multiple pages.
+
+```php
+// Fetching all values posted from second page and storing it in variable.
+ foreach ($_POST as $key => $value) {
+ $_SESSION['post'][$key] = $value;
+ }
+```
+
+I'm going to need to go back as well as forward. The forward button may be the traditional submit, while the backward button may execute a different command using the `formaction` button.
 
 #### Creating a Client Database in PHP MyAdmin
 
@@ -420,49 +453,6 @@ You don't have to download javascript packages. You can just include them in you
 
 - In jquery you can select elements by id. "#page1form"
 
-- ```html
-  console.log($(#page1form").Html);
-  
-  ## This is the form:
-  #("#page1form").on('submit',function(e) {console.log('form was submitted')}
-  ```
-
-I could also do e.preventDefault(); # 
-
-```html
-(function() {
-	$'#page1form').on('submit',function(e) {
-e.preventDefault();
-let condtion1 = $("#condition1").prop('checked');
-let condition2 = $("#condtion2".prop('checked');
-
-if (condition1) {
-message += "Condition 1 is True";
-}
-)
-})
-let condtion1 = $()
-})
-```
-
-
-
-Make Form 2 in the HTML. THE BENEFITS FORM. On the hidden page we have a form that's just hidden. 
-
-- IDs are unique classes are NOT unique. page2.back will take you to the back button on page three. 
-  - $("#page2.back").on('click', {
-  - $(#)
-  - })
-
-
-
-let Conditions = {
-
-}
-
-^^ Creates an object. Which is a data structure with properties. We are checking the properties on page 1 that alter this data structure.
-
-For a form like this we might want to go with templated type structure. There are weebly, wordpress, etc. They all have backend PHP that does lots of heavy lifting. You can also do a STATIC generator e.g. HUGO and JECKEL. HUGO takes markdown and converts them to HTML and formates them. It has templated language to create language - you can still EMBED javascript and EMBED HTML.
 
 #### Misc
 
@@ -485,3 +475,10 @@ How to go from local to website
 Would it be easy enough to style it with CSS. By the time I'm done with the form as I'm setting it up now I just need to set up dimensions and colors with. 
 
 Whats the difference between `let` vs `const` for variable types. There was also `var` but it had scoping problems so they made let and const. The former is modifiable and the latter is not. Prefer let and const over.
+
+#### Refs
+
+- A full youtube playlist devoping a multipage form is here: https://www.youtube.com/watch?v=J9VGqk8Gm2k&list=PLpxd8S-CfPhM9Wr8jrxKvVVm9Sg3DM-OW
+- PHP Multi Page Forms
+  - https://www.formget.com/multi-page-form-php/
+  - https://html.form.guide/php-form/php-order-form/
