@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Header -->
 <head>
 
     <title>SSD Listings Survey</title>
@@ -8,14 +10,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="app.js" defer></script>
 
-    <link rel="stylesheet" href="style.css" />  <!-- Check with Doug --> 
 
     <!-- Add Bootstrap Style Sheet (for buttons) --> 
     <link rel="bootstrap stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />  <!-- Check with Doug --> 
+
 
 </head>
 
+
+<!-- Preliminary Questionaire -->
 <body>
 
 <div class="container">
@@ -23,12 +28,19 @@
         <h1 style="text-align:center">SSD Listings Survey</h1>
     </div>
 
-<form class="form-horizontal" action="/update_table.php" method="post">
+
+<form class="form-horizontal" action="1_musculoskeletal.html" method="post">
 
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
     </div>
+
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <input type="text" class="form-control" id="age" placeholder="Enter age" name="age">
+    </div>
+
 
     <div class="form-group">
       <label for="email">Email:</label>
@@ -40,16 +52,12 @@
       <input type="phone" class="form-control" id="phone" placeholder="Enter phone" name="phone">
     </div>
 
-    <button type="submit" class="btn btn-default">Begin</button>
+    <button type="submit" class="pager_copy">Begin</button>
 
 
 </form> 
 
-<ul class="pager">
-    <li><a href="1_musculoskeletal.html">Begin</a></li>
-</ul>
 </div>
-
 </body>
 
 </html>
