@@ -1,16 +1,30 @@
 ## SSD Notes
 
+I am really struggling to print the PHP variables to the screen. I want to verify what is happening but I can't really because I can't find a way to print them.
+
+PHP code does not display in the html file. My shit isn't processing PHP. This was because Apache didn't know to run HTML files as PHP.
+
+OK, now I'm having a problem with "post". I think it has to do with the fact we haven't connected to a server anywhere. When/where do we do that?
+
+I'm confused if when we start a session we need to connect to the server. Let's just try to go forward with inserting the final query stuff. Surely I won't be able to do this without ever connecting to the server?
+
+I think I should make a minimal working example. It starts with an index.html file that has a form on it. The form takes you to page 2. On page 2 you load and display the form values from page 1.
+
+`session.register()`registers a global variable, meaning that whatever you put in parantheses will be accessible.
+
 Let's try to change the attribute of a PHP class using an HTML checkbox. It looks like if I use a form in HTML, the action of the form can be to run/submit a PHP file. It also looks like variables in the php file can be modified using HTML checkboxes.
 
 **To Do:**
 
-- [ ] Split form across multiple HTML pages using session variables
+- [ ] Get the name/id of all checked boxes
+  - [ ] https://stackoverflow.com/questions/4631224/getting-multiple-checkboxes-names-ids-with-php
+- [x] Get the followup page to have access to the checkbox results
 
-- [ ] Figure out how to store the checkboxes
+- [x] Split form across multiple HTML pages using session variables
 
-- [ ] Do the final page that submits the information
+- [ ] 
 
-- [ ] Update SQL Database with the correct entries
+- [ ] Update SQL Database with the correct entries (submit session variables)
 
 - [x] I want to style my next and previous buttons better!
 
@@ -33,6 +47,10 @@ Let's try to change the attribute of a PHP class using an HTML checkbox. It look
 - [ ] Figure out followup page
 
 - [ ] Web Hosting
+
+#### Parsing HTML as PHP
+
+It seems that the server (like Apache) doesn't know to run files that end in `.html` as PHP, even if they have PHP code in them. Therefore, all of the files that use PHP should end in `.php`. 
 
 #### Summary
 
