@@ -1,23 +1,17 @@
 ## SSD Notes
 
-I am really struggling to print the PHP variables to the screen. I want to verify what is happening but I can't really because I can't find a way to print them.
-
-PHP code does not display in the html file. My shit isn't processing PHP. This was because Apache didn't know to run HTML files as PHP.
-
-OK, now I'm having a problem with "post". I think it has to do with the fact we haven't connected to a server anywhere. When/where do we do that?
-
-I'm confused if when we start a session we need to connect to the server. Let's just try to go forward with inserting the final query stuff. Surely I won't be able to do this without ever connecting to the server?
-
-I think I should make a minimal working example. It starts with an index.html file that has a form on it. The form takes you to page 2. On page 2 you load and display the form values from page 1.
-
-`session.register()`registers a global variable, meaning that whatever you put in parantheses will be accessible.
-
-Let's try to change the attribute of a PHP class using an HTML checkbox. It looks like if I use a form in HTML, the action of the form can be to run/submit a PHP file. It also looks like variables in the php file can be modified using HTML checkboxes.
+Alright, things seem to be going pretty well. I need to access the checkboxes somehow, so that they can be used to display visibility elements on the followup questions page.
 
 **To Do:**
 
+- [ ] Register checked boxes as a session variable
+  
 - [ ] Get the name/id of all checked boxes
+  
   - [ ] https://stackoverflow.com/questions/4631224/getting-multiple-checkboxes-names-ids-with-php
+  
+- [ ] Add a comment box to the followup questions page
+
 - [x] Get the followup page to have access to the checkbox results
 
 - [x] Split form across multiple HTML pages using session variables
@@ -47,6 +41,83 @@ Let's try to change the attribute of a PHP class using an HTML checkbox. It look
 - [ ] Figure out followup page
 
 - [ ] Web Hosting
+
+
+
+#### Passing Checked Boxes Across Pages
+
+I ran into a problem with the scope of `Document.getElementByID`. Namely, If I ran the `onchange` function from the primary page then it wouldn't know how to display elements on the secondary page. The approach I want to try now is storing the value of all checked boxes as session variables, then loading them on the next page.
+
+Let's try to submit the value of the checked boxes to the database. But why? I want to use them to show or display elements.
+
+Why is it so hard to find the answers to such simple procedures? Web development is just a mess to figure out how to do very basic things. There are too many ways to do it, and lots of them conflict.
+
+
+
+#### Showing/Hiding Followup Questions based on checked boxes
+
+You can add the `onchange` event to the checkbox. Then, in the javascript file you can show or hide the corresponding element. I may need to add a new class so I can change that class on the click.
+
+In bootstrap, we can use the `.d-none` class to hide an element on all devices, and the `.d-block` class to show an element on all devices. These are classes... so I'm not entirely sure how to change them. There is also the option to change the display value of an element.
+
+It says you can change the value of the display property.
+
+Lets make a hidden checkbox class and set the display property to none using `display:none`. First, we need to copy the original checkbox class. Instead of this maybe let's try to toggle.
+
+>In order to display data/content of a specific element we can use the toggle() method. The toggle() method is used to check the visibility of selected elements to toggle between hide() and show().
+
+Wait, I did this before. How did I do it? Let's go modify the files over in the original prototype.
+
+We need to do something like use querySelector to toggle the visibility of an element.
+
+You can get element by id, then toggle the display of the element.
+
+```javascript
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+```
+
+```html
+<button onclick="myFunction()">Click Me</button>
+
+<div id="myDIV">
+  This is my DIV element.
+</div>
+```
+
+Let's try to just toggle a single element using a fixed ID;
+
+1) Label the element ID
+
+2) Create a function that toggles the visibility of that element
+
+#### Using Checkbox to dictate what occurs on another page.
+
+I'm not able to locate the element by ID. Need to start with a toy example again.
+
+The function in `app.js` is working, in the sense that it can find the element by id. But if I do the same thing with a bootstrap element it can't seem to find it.
+
+I guess the problem is if I put the checkbox class as well as the id="myDiv". If I just have the latter it seems to be able to find it. But it doesn't find it if I move the element off the page to another page.
+
+>The element you were trying to find wasn’t in the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) when your script ran.
+
+Also note that ID should be unique. If I need to grab multiple similar items I can use name or classname.
+
+>The [HTML spec](https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute) requires the `id` attribute to be unique in a page... There are a couple of related functions that will return a list of elements: [`getElementsByName`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByName) or [`getElementsByClassName`](https://developer.mozilla.org/en-US/DOM/document.getElementsByClassName) that may be more suited to your requirements.
+
+#### Hard Refresh (Clearing Cache) to Update Javascript
+
+My javascript functions aren't being found. There is a problem with scope. If I put the javascript in the head of the html file it is fine. But, if I put it in the javascript file it isn't being found. Something was in App.js that was breaking. Now it should be fixed. 
+
+I had to reopen the page for the changes to javascript to take effect. What was that? I guess the javascript file was cached. 
+
+I have to clear my cache to get my javascript file to update. That's crazy. The answer is to <u>use incognito mode in chrome</u> whenever I am working on javascript files.
 
 #### Parsing HTML as PHP
 
