@@ -36,22 +36,94 @@
 <!-- Load Previous data into session using PHP -->
 <?php
 
+// Connect to server
+
+$servername = "localhost";
+$username = "SSD_DB";
+$password = "disability12!";
+$dbname = "Clients";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+
 session_start();
+$_SESSION['primary_checked_boxes'] = $_POST['check_list[]'];
 
-var_dump($_POST["level"]);
-
-
-// session_register('name');
-// session_register('age');
-// session_register('email');
-// session_register('phone');
+echo $_SESSION['primary_checked_boxes'];
 
 
-// //finally, let's store our posted values in the session variables
-// $_SESSION['name'] = $_POST['name'];
-// $_SESSION['age'] = $_POST['age'];
-// $_SESSION['email'] = $_POST['email'];
-// $_SESSION['phone'] = $_POST['phone'];
+$sql = "INSERT INTO client (name, age, email, phone, primary_checked_boxes)
+VALUES ('$_SESSION[name]','$_SESSION[age]','$_SESSION[email]', '$_SESSION[phone]','$_SESSION[primary_checked_boxes]')";
+
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+  echo "<br>";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+  echo "<br>";
+}
+
+// Print all the clients
+$query = "SELECT primary_checked_boxes FROM client";
+$response = @mysqli_query($conn, $query);
+if($response){
+  while($row = mysqli_fetch_array($response)){
+    echo $row['name'];
+    echo "<br>";
+  }
+}
+
+$conn->close();
+
+
+
+// // // Store variables from previous form as session vars
+// // $_SESSION['primary_checked_boxes'] = $_POST['check_list'];
+
+// // Now submit to the database
+// $insert_query = 'insert into client (
+//         name,
+//         age,
+//         email
+//         phone,
+//         primary_checked_boxes
+//             ) values (
+//         " . $_SESSION['name'] . ",
+//         " . $_SESSION['age'] . ",
+//         " . $_SESSION['email'] . ",
+//         " . $_SESSION['phone'] . ",
+//         " . $_POST['check_list'] . "
+//             );'
+
+// // Lets run the query
+// mysql_query($insert_query);
+
+// if ($conn->query($insert_query) === TRUE) {
+//   echo "New record created successfully";
+//   echo "<br>";
+// } else {
+//   echo "Error: " . $sql . "<br>" . $conn->error;
+//   echo "<br>";
+// }
+
+
+
+// // if(!empty($_POST['check_list']))
+// // {
+// //      foreach($_POST['check_list'] as $id){
+// //       array_push($_SESSION[checked_boxes],id);
+// //       echo "<br>$id was added! ";
+// //      }
+// // }
+
+
+// $conn->close();
+
 
 ?>
 
@@ -61,58 +133,18 @@ var_dump($_POST["level"]);
 
   <h4>Please answer the following questions to the best of your ability:</h4>
 
+  <div id="myDIV" style="display:none">
+    <label><input type="checkbox"> Followup Question</label>
+  </div>
 
-  <div class="checkbox">
+<!--   <div class="hidden_checkbox" style="display:none" id="12.02_test">
       <label><input type="checkbox" name="1.02"> Have you experienced a significant decline in your mental abilities over the years? (12.02)</label>
       <br>
   </div>
+  <br> -->
 
-  <div class="checkbox">
-      <label><input type="checkbox" name="1.03"> Have you been diagnosed with Schizophrenia, schizoaffective disorder or any other pyschotic disorder? (12.03)</label>
-  </div>
 
-  <div class="checkbox">
-      <label><input type="checkbox" name="1.04"> Do you suffer from depression or bipolar disorder? (12.04)</label>
-  </div>
-
-  <div class="checkbox">
-      <label><input type="checkbox" name="1.05"> Do you have a learning disability? (12.05)</label>
-  </div>
-
-  <div class="checkbox">
-      <label><input type="checkbox" name="1.06"> Do you have anxiety? (12.06)</label>
-  </div>
-
-  <div class="checkbox">
-      <label><input type="checkbox" name="1.07">Do you have obsessive-compulsive disorder (OCD)? (12.06a)</label>
-  </div>
-
-  <div class="checkbox">
-      <label><input type="checkbox" name="1.08"> Are you afraid of large crowds (agoraphobia)? (12.06b)</label>
-  </div>
-
-  <div class="checkbox">
-      <label><input type="checkbox" name="1.08"> Do you have altered motor or sensory function that is not explained by any other medical condition? (12.07)</label>
-  </div>
-
-  <div class="checkbox">
-      <label><input type="checkbox" name="1.06"> Have you been diagnosed with a personality disorder (12.09)</label>
-  </div>
-
-  <div class="checkbox">
-      <label><input type="checkbox" name="1.07">Do you have ADD or ADHD? (12.11)</label>
-  </div>
-
-  <div class="checkbox">
-      <label><input type="checkbox" name="1.08"> Do you have an eating disorder? (12.13)</label>
-  </div>
-
-  <div class="checkbox">
-      <label><input type="checkbox" name="1.08"> Do you suffer from trauma or a stress related disorder? (12.15)</label>
-  </div>
-  <br>
-
-  <button type="submit" class="pager_copy" formaction="index.html">Previous</button>
+  <button type="submit" class="pager_copy" formaction="mental_copy.php">Previous</button>
   <button type="submit" class="pager_copy">Next</button>
 
 

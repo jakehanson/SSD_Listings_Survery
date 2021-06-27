@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
     
-    <head>
-        <title>SSD Listings Survey</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="app.js" defer></script>
+<head>
 
-        <link rel="stylesheet" href="style.css" />  <!-- Check with Doug --> 
+    <title>SSD Listings Survey</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-        <!-- Add Bootstrap Style Sheet (for buttons) --> 
-        <link rel="bootstrap stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />  <!-- Check with Doug --> 
 
- 
-    </head>
+    <!-- Add Bootstrap Style Sheet (for buttons) --> 
+    <link rel="bootstrap stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="app.js" defer></script>
+
+
+</head>
 
 <body>
 
@@ -61,61 +62,60 @@ $_SESSION['phone'] = $_POST['phone'];
 ?>
 
 
-
 <!-- Mental Disorders Primary Questionnaire -->
 
-<form class="form-horizontal" action="followup.php" method="post">
+<form class="form-horizontal" action="followup.php" method="post" id="mental_disorders">
 
   <h3>Please answer the following questions to the best of your ability:</h3>
 
 
-  <div class="checkbox">
-      <label><input type="checkbox" name="12.02"> Have you experienced a significant decline in your mental abilities over the years? (12.02)</label>
+  <div class="checkbox" id="12.02">
+      <label><input type="checkbox" name="check_list[]" value="12.02"> Have you experienced a significant decline in your mental abilities over the years? (12.02)</label>
       <br>
   </div>
 
   <div class="checkbox">
-      <label><input type="checkbox" name="12.03"> Have you been diagnosed with Schizophrenia, schizoaffective disorder or any other pyschotic disorder? (12.03)</label>
+      <label><input type="checkbox" name="check_list[]" value="12.03"> Have you been diagnosed with Schizophrenia, schizoaffective disorder or any other pyschotic disorder? (12.03)</label>
   </div>
 
   <div class="checkbox">
-      <label><input type="checkbox" name="12.04"> Do you suffer from depression or bipolar disorder? (12.04)</label>
+      <label><input type="checkbox" name="check_list[]" value="12.04"> Do you suffer from depression or bipolar disorder? (12.04)</label>
   </div>
 
   <div class="checkbox">
-      <label><input type="checkbox" name="12.05"> Do you have a learning disability? (12.05)</label>
+      <label><input type="checkbox" name="check_list[]" value="12.05"> Do you have a learning disability? (12.05)</label>
   </div>
 
   <div class="checkbox">
-      <label><input type="checkbox" name="12.06a"> Do you have anxiety? (12.06a)</label>
+      <label><input type="checkbox" name="check_list[]" value="12.06a"> Do you have anxiety? (12.06a)</label>
   </div>
 
   <div class="checkbox">
-      <label><input type="checkbox" name="12.06b">Do you have obsessive-compulsive disorder (OCD)? (12.06b)</label>
+      <label><input type="checkbox" name="check_list[]" value="12.06b">Do you have obsessive-compulsive disorder (OCD)? (12.06b)</label>
   </div>
 
   <div class="checkbox">
-      <label><input type="checkbox" name="12.06c"> Are you afraid of large crowds (agoraphobia)? (12.06c)</label>
+      <label><input type="checkbox" name="check_list[]" value="12.06c"> Are you afraid of large crowds (agoraphobia)? (12.06c)</label>
   </div>
 
   <div class="checkbox">
-      <label><input type="checkbox" name="12.07"> Do you have altered motor or sensory function that is not explained by any other medical condition? (12.07)</label>
+      <label><input type="checkbox" name="check_list[]" value="12.07"> Do you have altered motor or sensory function that is not explained by any other medical condition? (12.07)</label>
   </div>
 
   <div class="checkbox">
-      <label><input type="checkbox" name="12.09"> Have you been diagnosed with a personality disorder (12.09)</label>
+      <label><input type="checkbox" name="check_list[]" value="12.09"> Have you been diagnosed with a personality disorder (12.09)</label>
   </div>
 
   <div class="checkbox">
-      <label><input type="checkbox" name="12.11">Do you have attention deficity hyperactivity disorder (ADHD)? (12.11)</label>
+      <label><input type="checkbox" name="check_list[]" value="12.11">Do you have attention deficity hyperactivity disorder (ADHD)? (12.11)</label>
   </div>
 
   <div class="checkbox">
-      <label><input type="checkbox" name="12.13"> Do you have an eating disorder? (12.13)</label>
+      <label><input type="checkbox" name="check_list[]" value="12.13"> Do you have an eating disorder? (12.13)</label>
   </div>
 
   <div class="checkbox">
-      <label><input type="checkbox" name="12.15"> Do you suffer from trauma or a stress related disorder? (12.15)</label>
+      <label><input type="checkbox" name="check_list[]" value="12.15"> Do you suffer from trauma or a stress related disorder? (12.15)</label>
   </div>
   <br>
 
